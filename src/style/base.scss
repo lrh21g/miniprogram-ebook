@@ -1,0 +1,55 @@
+.home-book-footer {
+  .home-book-btn {
+    width: 100%;
+    color: #3696EF;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid #EDEEEE;
+    background: #fff;
+  }
+}
+
+.detail-bottom {
+  .detail-btn-read {
+    width: 100%;
+    border: none;
+    color: #fff;
+    background: #1EA3F5;
+  }
+
+  .detail-btn-shelf {
+    width: 100%;
+    color: #1EA3F5;
+    background: #fff;
+    border: 1px solid #1EA3F5;
+  }
+
+  .detail-btn-remove {
+    width: 100%;
+    color: #F96128;
+    background: rgba(255,175,155,.3);
+    border: 1px solid #FFAF9B;
+  }
+}
+
+.search-item-icon {
+  .icon {
+    .van-icon {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+  }
+}
+
+@mixin ellipse {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
