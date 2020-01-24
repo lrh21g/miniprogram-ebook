@@ -61,20 +61,20 @@
 </template>
 
 <script>
-import Global from '../../components/Global'
-import SearchBar from '../../components/SearchBar'
-import HomeCard from '../../components/HomeCard'
-import AdImage from '../../components/AdImage'
-import HomeBook from '../../components/HomeBook'
-import Auth from '../../components/auth/Auth'
-import HomePreload from '../../components/preload/HomePreload'
+import Global from '@/components/Global'
+import SearchBar from '@/components/SearchBar'
+import HomeCard from '@/components/HomeCard'
+import AdImage from '@/components/AdImage'
+import HomeBook from '@/components/HomeBook'
+import Auth from '@/components/auth/Auth'
+import HomePreload from '@/components/preload/HomePreload'
 import {
   getHomeData,
   getHomeSectionData,
   register,
   hasSignToday,
   sign
-} from '../../api'
+} from '@/api'
 import {
   getUserOpenId as getOpenId,
   showLoading,
@@ -84,9 +84,9 @@ import {
   setStorageSync,
   getStorageSync,
   showToast
-} from '../../api/wechat'
+} from '@/api/wechat'
 import { HOMEBOOK_MODE, CATEGORY } from '@/utils/const'
-import { handleError } from '../../utils'
+import { handleError } from '@/utils'
 import Dialog from '@vant/weapp/dist/dialog/dialog'
 
 export default {

@@ -3,15 +3,16 @@
     <div class="search-bar-wrapper" @click="onSearchBarClick">
       <div class="search">
         <BaseIcon name="search" color="#858c96" size="16px" />
-        <input class="search-bar-input"
-          :placeholder="hotSearch || ''"
-          placeholder-style="color: #adb4be"
-          :disabled="disabled"
-          :focus="focus"
-          confirm-type="search"
-          @input="onChange"
-          @confirm="onConfirm">
       </div>
+      <input class="search-bar-input"
+        :placeholder="hotSearch || ''"
+        placeholder-style="color: #adb4be"
+        :disabled="disabled"
+        :focus="focus"
+        confirm-type="search"
+        v-model="searchWord"
+        @input="onChange"
+        @confirm="onConfirm">
       <div v-if="searchWord.length > 0" class="clear" @click="onClearClick">
         <BaseIcon name="clear" color="#ccc" size="16px"></BaseIcon>
       </div>
@@ -55,6 +56,7 @@ export default {
       this.$emit('onConfirm', v.mp.detail.value)
     },
     setValue (v) {
+      console.log('search setValue v', v)
       this.searchWord = v
     },
     getValue () {
