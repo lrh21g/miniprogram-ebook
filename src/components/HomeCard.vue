@@ -3,30 +3,18 @@
     <div class="home-card-inner">
       <div class="home-card-userinfo">
         <div class="home-card-avatar">
-          <ImageView :src="userInfo.avatarUrl"
-            mode="scaleToFill"
-            height="100%"
-            round
-            @click="gotoShelf"></ImageView>
+          <ImageView :src="userInfo.avatarUrl" @click="gotoShelf" mode="scaleToFill" height="100%" round></ImageView>
         </div>
         <span class="home-card-name">{{userInfo.nickName}}</span>
         <div class="home-card-hint" v-if="platform === 'wx'">
           已连续<span class="sign-num">{{signDay}}</span>天签到
-          <BaseButton v-if="!hasSign"
-            size="min"
-            type="info"
-            text="立即签到"
-            custom-class="btn-sign"
-            round
-            @click="sign"></BaseButton>
+          <BaseButton size="mini" type="info" text="立即签到" custom-class="btn-sign" round @click="sign" v-if="!hasSign" />
         </div>
       </div>
       <div class="home-card-book">
         <div class="home-card-img-wrapper">
-          <div v-for="(item, index) in bookList" :key="index"
-            class="home-card-img"
-            @click="onBookClick(item)">
-            <ImageView :scr="item.cover"></ImageView>
+          <div class="home-card-img" v-for="(item, index) in bookList" :key="index" @click="onBookClick(item)">
+            <ImageView :src="item.cover"></ImageView>
           </div>
         </div>
         <div class="home-card-shelf-wrapper" @click="gotoShelf">
@@ -35,73 +23,77 @@
         </div>
       </div>
     </div>
-    <div class="home-card-feedback" v-if="platform === 'wx'" @click="showChapter">反馈</div>
-    <van-dialog id="van-dialog"/>
+    <div class="home-card-feedback" @click="showChapter" v-if="platform === 'wx'">反馈</div>
+    <van-dialog id="van-dialog" />
   </div>
 </template>
 
 <script>
-import ImageView from './base/ImageView'
-import BaseIcon from './base/BaseIcon'
-import BaseButton from './base/BaseButton'
-import Dialog from '@vant/weapp/dist/dialog/dialog'
+  import ImageView from './base/ImageView'
+  import BaseIcon from './base/BaseIcon'
+  import BaseButton from './base/BaseButton'
+  import Dialog from '@vant/weapp/dist/dialog/dialog'
 
-export default {
-  components: {
-    ImageView, BaseIcon, BaseButton
-  },
-  props: {
-    data: Object,
-    num: Number,
-    hasSign: Boolean,
-    signDay: Number
-  },
-  computed: {
-    userInfo () {
-      return (this.data && this.data.userInfo) || {}
+  export default {
+    components: {
+      BaseButton,
+      BaseIcon,
+      ImageView
     },
-    bookList () {
-      return (this.data && this.data.bookList) || []
-    }
-  },
-  data () {
-    return {
-      platform: mpvuePlatform
-    }
-  },
-  methods: {
-    gotoShelf () {
-      this.$router.push('/page/shelf/main')
+    props: {
+      data: Object,
+      num: Number,
+      hasSign: Boolean,
+      signDay: Number
     },
-    onBookClick (book) {
-      this.$emit('onBookClick', book)
+    computed: {
+      userInfo () {
+        return (this.data && this.data.userInfo) || {}
+      },
+      bookList () {
+        return (this.data && this.data.bookList) || []
+      }
     },
-    sign () {
-      this.$emit('onSignClick')
+    data () {
+      return {
+        platform: mpvuePlatform
+      }
     },
-    showChapter () {
-      Dialog.alert({
-        title: '反馈',
-        message: '该功能正在开发中...'
-      })
+    methods: {
+      gotoShelf () {
+        this.$router.push('/pages/shelf/main')
+      },
+      onBookClick (book) {
+        this.$emit('onBookClick', book)
+      },
+      sign () {
+        this.$emit('onSignClick')
+      },
+      showChapter () {
+        // this.$router.push('/pages/chapter/main')
+        Dialog.alert({
+          title: '反馈',
+          message: '该功能正在开发中...'
+        })
+      }
     }
   }
-}
 </script>
 
-<style lang="scss" scoped>
-  .homt-card-hint {
+<style lang="scss">
+  .home-card-hint {
     .btn-sign {
       width: auto;
-      padding: 0 10px;
-      margin-left: 5px;
-      font-size: 10px;
-      color: #fff;
       background: #ff6388;
+      padding: 0 10px;
       border: none;
       border-radius: 50px;
+      margin-left: 5px;
+      color: #fff;
+      font-size: 10px;
     }
   }
+
 </style>
 
 <style lang="scss" scoped>
@@ -110,52 +102,63 @@ export default {
     width: 100%;
     padding: 27px 15px 10px 15px;
     box-sizing: border-box;
+
     .home-card-inner {
-      padding: 20px 15px;
-      background-image: linear-gradient(90deg, #54575f 0%, #595b60 100%);
-      border-radius: 15px;
       color: white;
+      background-image: linear-gradient(90deg, #54575F 0%, #595B60 100%);
+      border-radius: 15px;
+      padding: 20px 15px;
+
       .home-card-userinfo {
         display: flex;
         align-items: center;
+
         .home-card-avatar {
           width: 20px;
           height: 20px;
         }
+
         .home-card-name {
-          margin-left: 10px;
           font-size: 12px;
           color: #f4f4f4;
+          margin-left: 10px;
         }
+
         .home-card-hint {
           display: flex;
           align-items: center;
-          margin-left: 10px;
           font-size: 12px;
           color: #aaa;
+          margin-left: 10px;
+
           .sign-num {
+            font-size: 16px;
             margin: 0 5px;
-            font-size: 6px;
             font-weight: 500;
           }
         }
       }
+
       .home-card-book {
         display: flex;
         padding-top: 10px;
+
         .home-card-img-wrapper {
           flex: 1;
           display: flex;
           justify-content: space-between;
+
           .home-card-img {
             width: 80px;
             height: 105px;
           }
         }
+
         .home-card-shelf-wrapper {
           flex: 0 0 auto;
-          display: flex;
           padding-left: 15px;
+          display: flex;
+
           .home-card-shelf {
             display: flex;
             align-items: center;
@@ -165,6 +168,7 @@ export default {
             color: #f4f4f4;
             word-break: break-word;
           }
+
           .arrow {
             width: 15px;
             display: flex;
@@ -174,21 +178,25 @@ export default {
         }
       }
     }
+
     .home-card-feedback {
       position: absolute;
-      top: 47px;
       right: 15px;
+      top: 47px;
+      font-size: 10px;
+      // width: 60px;
       width: 40px;
       height: 20px;
-      font-size: 10px;
-      color: #f4f4f4;
       line-height: 20px;
       text-align: center;
       background: #707070;
+      color: #f4f4f4;
       border-radius: 50px 0 0 50px;
+
       &:active {
-        opacity: 0.7;
+        opacity: .7;
       }
     }
   }
+
 </style>

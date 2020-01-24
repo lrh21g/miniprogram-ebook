@@ -1,6 +1,6 @@
 <template>
   <div class="image-view" @click="onClick">
-    <img v-show="!isLoading"
+    <img v-show="!isLoading && !error"
       :class="round ? ' round image' : 'image'"
       :style="{ height }"
       :src="src"
@@ -8,11 +8,10 @@
       :lazy-load="lazyLoad"
       @error="onError"
       @load="onLoad">
-    <img v-if="mpvuePlatform === 'wx'"
-      v-show="isLoading || error"
+    <img v-show="isLoading || error"
       :class="round ? ' round image' : 'image'"
       :style="{ height }"
-      src="/static/images/loading.jpeg"
+      src="https://www.youbaobao.xyz/book/img/loading2.ae9e5924.jpeg"
       :mode="mode"
       @error="onPreloadError"
       @load="onPreload">

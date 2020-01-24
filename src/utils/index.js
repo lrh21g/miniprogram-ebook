@@ -1,3 +1,24 @@
+import { setError } from './error'
+
+// 请求校验函数（判断是否成功）
+export function handleError (response) {
+  if (response && response.data && response.data.error_code === 0) {
+    return true
+  } else {
+    const msg = response && response.data && response.data.msg
+    if (msg) {
+      showToast(msg)
+    } else {
+      setError('数据加载失败，请重试')
+    }
+  }
+}
+
+export function showToast (title, success = false) {
+  success ? mpvue.showToast({ title })
+    : mpvue.showToast({ title, icon: 'none' })
+}
+
 function formatNumber (n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`

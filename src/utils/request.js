@@ -1,11 +1,14 @@
+import { handleError } from './index' // 引入请求校验函数（判断是否成功）
+
 function createFly () {
   if (mpvuePlatform === 'wx') {
     const Fly = require('flyio/dist/npm/wx')
-    return Fly
+    return new Fly()
   }
   return null
 }
 
+// Get请求
 export function get (url, params = {}) {
   const fly = createFly()
   if (fly) {
@@ -15,13 +18,14 @@ export function get (url, params = {}) {
         resolve(response)
       }).catch(err => {
         console.log('POST request err', err)
-        // handleError(err)
+        handleError(err)
         reject(err)
       })
     })
   }
 }
 
+// POST请求
 export function post (url, params = {}) {
   const fly = createFly()
   if (fly) {
@@ -30,7 +34,7 @@ export function post (url, params = {}) {
         console.log('GET request response', response)
       }).catch(err => {
         console.log('GET request err', err)
-        // handleError(err)
+        handleError(err)
         reject(err)
       })
     })
