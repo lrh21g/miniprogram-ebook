@@ -70,7 +70,6 @@
         this.$emit('onSignClick')
       },
       showChapter () {
-        // this.$router.push('/pages/chapter/main')
         Dialog.alert({
           title: '反馈',
           message: '该功能正在开发中...'
