@@ -184,7 +184,7 @@ export default {
     // 跳转到书籍详情
     gotoBookDetail (book) {
       this.$router.push({
-        path: '/pages/detail/mian',
+        path: '/pages/detail/main',
         query: { fileName: book.fileName }
       })
     },

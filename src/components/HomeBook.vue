@@ -125,6 +125,7 @@
         this.$emit('onMoreClick')
       },
       onBookClick (book) {
+        console.log('onBookClick')
         this.$emit('onBookClick', book)
       }
     }
