@@ -44,6 +44,13 @@
 
 + [flyio](https://wendux.github.io/dist/#/doc/flyio/readme)：一个支持所有JavaScript运行环境的基于Promise的、支持请求转发、强大的http请求库
 
+## src/utils/wxId.js 配置
+
+``` javascript
+export const WX_APP_ID = 'xxxxxx'
+export const WX_APP_SECRET = 'xxxxxx'
+```
+
 ## 项目展示
 
 ![app01](./readme/images/app01.png)
